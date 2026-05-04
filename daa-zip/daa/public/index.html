@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Efficient Delivery Drone Path Planning</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Drone Path Optimizer</h1>
+            <p>Energy Efficient Delivery Route Planning System</p>
+        </header>
+
+        <main>
+            <div class="controls-panel glass-panel">
+                <div class="control-group">
+                    <label for="algorithm">Algorithm:</label>
+                    <select id="algorithm">
+                        <option value="exact">Exact (Brute Force - Max 12 nodes)</option>
+                        <option value="greedy">Greedy (Nearest Neighbor)</option>
+                        <option value="approx">Approximation (2-Opt)</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="payload">Payload Weight (kg):</label>
+                    <input type="number" id="payload" value="5" min="0" step="1">
+                </div>
+
+                <div class="control-group">
+                    <label for="num-nodes">Random Nodes:</label>
+                    <div class="flex-row">
+                        <input type="number" id="num-nodes" value="10" min="2" max="100">
+                        <button id="btn-generate" class="btn-secondary">Generate</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="btn-clear" class="btn-danger">Clear Map</button>
+                    <button id="btn-optimize" class="btn-primary">Optimize Route</button>
+                </div>
+            </div>
+
+            <div class="map-panel glass-panel">
+                <canvas id="mapCanvas" width="800" height="600"></canvas>
+                <div class="map-hint">Click on the map to add delivery points</div>
+            </div>
+
+            <div class="results-panel glass-panel">
+                <h2>Results Comparison</h2>
+                <button id="btn-compare-all" class="btn-secondary" style="margin-bottom: 15px;">Run All Algorithms</button>
+                <div class="table-container">
+                    <table id="results-table">
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Total Distance</th>
+                                <th>Energy Consumed</th>
+                                <th>Execution Time (ms)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
